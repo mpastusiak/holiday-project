@@ -16,7 +16,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="place_type",
         discriminatorType = DiscriminatorType.STRING)
-public abstract class Place {
+public class Place {
     @Id
     @Column(name = "place_id", unique = true)
     private Long place_id;
