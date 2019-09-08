@@ -1,14 +1,25 @@
 package com.kodilla.holiday.domain.flight;
 
-import lombok.*;
-
-import javax.persistence.*;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CarrierDto {
-    private Long carrier_id;
+    private Long carrierId;
+
+    private String carrierPartnerId;
 
     private String carrierName;
+
+    public CarrierDto() {
+
+    }
+
+    @Override
+    public String toString() {
+        return carrierName;
+    }
 }

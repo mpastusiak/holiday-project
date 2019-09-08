@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/flight/skyscanner")
 @CrossOrigin("*")
 public class SkyScannerFlightsController {
 
@@ -21,7 +21,7 @@ public class SkyScannerFlightsController {
     @Autowired
     private SkyScannerFlightFacade facade;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/skyscanner/flight/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{originPlace}/{destinationPlace}/{outboundPartialDate}/{inboundPartialDate}")
     public SkyScannerFlightQuoteResponseDto getResponse(@PathVariable String originPlace, @PathVariable String destinationPlace,
                                                         @PathVariable String outboundPartialDate, @PathVariable String inboundPartialDate) {
         System.out.println("Wykonuje controller " + originPlace + destinationPlace + outboundPartialDate + inboundPartialDate);

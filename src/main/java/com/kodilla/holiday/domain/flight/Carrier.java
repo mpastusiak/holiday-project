@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,13 +18,18 @@ import java.util.List;
 @Builder
 public class Carrier {
     @Id
-    @Column(name = "carrier_id", unique = true)
-    private Long carrier_id;
+    @Column(name = "carrierId", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long carrierId;
 
-    @Column(name = "carrier_name")
+    @Column(name = "carrierPartnerId")
+    private String carrierPartnerId;
+
+    @Column(name = "carrierName")
     private String carrierName;
 
     @ManyToMany(mappedBy = "carriersList")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<TheFlight> flightsList;
 
 }

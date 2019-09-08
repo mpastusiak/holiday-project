@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @DiscriminatorValue("origin")
 public class Origin extends Place {
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "origin_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "originsList")
     private List<TheFlight> flightsList;
 }

@@ -24,4 +24,13 @@ public class SkyScannerFlightInboundLegDto {
 
     @JsonProperty("DepartureDate")
     private String departureDate;
+
+    @Override
+    public String toString() {
+        return "carrierIds=" + carrierIds +
+                ", originId='" + originId + '\'' +
+                ", destinationId='" + destinationId + '\'' +
+                ", departureDate='" + departureDate + '\'' +
+                '}';
+    }
 }

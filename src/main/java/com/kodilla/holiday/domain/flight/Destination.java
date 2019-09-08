@@ -1,12 +1,15 @@
 package com.kodilla.holiday.domain.flight;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @DiscriminatorValue("destination")
 public class Destination extends Place {
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "destination_id")
+    @OneToMany(mappedBy = "destinationsList")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<TheFlight> flightsList;
 }

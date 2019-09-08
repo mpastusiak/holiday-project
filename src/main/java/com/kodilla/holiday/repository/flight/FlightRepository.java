@@ -16,5 +16,8 @@ public interface FlightRepository extends CrudRepository<TheFlight, Long> {
     Optional<TheFlight> findById(Long id);
 
     @Override
+    void deleteById(Long id);
+
+    @Override
     long count();
 }

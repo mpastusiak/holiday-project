@@ -1,5 +1,6 @@
 package com.kodilla.holiday.client.flight.skyscanner;
 
+import com.kodilla.holiday.client.RestTemplateResponseErrorHandler;
 import com.kodilla.holiday.config.skyscanner.SkyScannerConfig;
 import com.kodilla.holiday.domain.flight.skyscanner.SkyScannerFlightQuoteResponseDto;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 @Component
 public class SkyScannerFlightClient {
@@ -31,9 +33,19 @@ public class SkyScannerFlightClient {
                 .pathSegment(inboundPartialDate)
                 .queryParam("apikey", skyScannerConfig.getSkyscannerAppKey()).build().encode().toUri();
 
-        System.out.println("Wykonuje client " + originPlace + destinationPlace + outboundPartialDate + inboundPartialDate);
-        System.out.println("Wykonuje client " + url.toString());
+        restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
 
-        return restTemplate.getForObject(url, SkyScannerFlightQuoteResponseDto.class);
+        int count = 0;
+        int maxTries = 100;
+        while(true) {
+            try {
+                return restTemplate.getForObject(url, SkyScannerFlightQuoteResponseDto.class);
+            } catch (Exception e) {
+                if (++count == maxTries) {
+                    return new SkyScannerFlightQuoteResponseDto(new ArrayList<>(), new ArrayList<>(),
+                            new ArrayList<>(), new ArrayList<>());
+                }
+            }
+        }
     }
 }

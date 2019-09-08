@@ -1,20 +1,41 @@
 package com.kodilla.holiday.domain.flight;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TheFlightDto {
-    private Long id;
-    private PlaceDto origin_id;;
-    private PlaceDto destination_id;
-    private SimpleDateFormat departureDate;
+    @JsonProperty("flightId")
+    private Long flightId;
+
+    @JsonProperty("origin")
+    private List<PlaceDto> originsList;
+
+    @JsonProperty("destination")
+    private List<PlaceDto> destinationsList;
+
+    @JsonProperty("departureDate")
+    private String departureDate;
+
+    @JsonProperty("direct")
     private boolean direct;
+
+    @JsonProperty("minPrice")
     private BigDecimal minPrice;
+
+    @JsonProperty("carriers")
     private List<CarrierDto> carriersList;
+
+    public TheFlightDto() {
+
+    }
 }

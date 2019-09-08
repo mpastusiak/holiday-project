@@ -1,16 +1,16 @@
 package com.kodilla.holiday.domain.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Getter
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PlaceDto {
-    private Long place_id;
+    private Long placeId;
+
+    private String placePartnerId;
 
     private String iataCode;
 
@@ -19,4 +19,15 @@ public class PlaceDto {
     private String cityName;
 
     private String countryName;
+
+    public PlaceDto() {
+
+    }
+
+    @Override
+    public String toString() {
+        return placeName + "|" +
+                cityName + "|" +
+                countryName;
+    }
 }

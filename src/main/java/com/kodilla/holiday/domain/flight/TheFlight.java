@@ -1,11 +1,14 @@
 package com.kodilla.holiday.domain.flight;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,19 +20,29 @@ import java.util.List;
 public class TheFlight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "flightId")
+    private Long flightId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "origin_id")
-    private Origin origin_id;;
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "join_flight_origin",
+            joinColumns = @JoinColumn(name = "flight_id"),
+            inverseJoinColumns = @JoinColumn(name = "place_id")
+    )
+    private List<Origin> originsList;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "destination_id")
-    private Destination destination_id;
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name = "join_flight_destination",
+            joinColumns = @JoinColumn(name = "flight_id"),
+            inverseJoinColumns = @JoinColumn(name = "place_id")
+    )
+    private List<Destination> destinationsList;
 
     @Column(name = "departureDate")
-    private SimpleDateFormat departureDate;
+    private String departureDate;
 
     @Column(name = "direct")
     private boolean direct;
@@ -37,7 +50,8 @@ public class TheFlight {
     @Column(name = "minPrice")
     private BigDecimal minPrice;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "join_flight_carrier",
             joinColumns = @JoinColumn(name = "flight_id"),
