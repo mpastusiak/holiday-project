@@ -15,7 +15,6 @@ public class WeatherController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/rapidapi/weather/{lat}/{lon}")
     public WeatherResponseDto getResponse(@PathVariable String lat, @PathVariable String lon) {
-        System.out.println("Wykonuje controller " + lat + lon);
         return facade.getWeatherResponse(lat, lon);
     }
 

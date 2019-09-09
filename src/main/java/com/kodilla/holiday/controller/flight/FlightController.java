@@ -44,7 +44,6 @@ public class FlightController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/", consumes = APPLICATION_JSON_VALUE)
     public void createFlight(@RequestBody TheFlightDto theFlightDto) {
-        System.out.println("Controller CreateFlight " + theFlightDto.toString());
         facade.createFlight(theFlightDto);
     }
 

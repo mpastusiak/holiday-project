@@ -11,7 +11,6 @@ public class WeatherService {
     WeatherClient client;
 
     public WeatherResponseDto getWeatherResponse(String lat, String lon) {
-        System.out.println("Wykonuje service " + lat + lon);
         return client.getWeatherForSixteenDays(lat, lon);
     }
 }

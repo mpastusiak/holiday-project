@@ -12,7 +12,6 @@ public class SkyScannerFlightService {
 
     public SkyScannerFlightQuoteResponseDto getSkyScannerFlightResponse(String originPlace, String destinationPlace,
                                                                              String outboundPartialDate, String inboundPartialDate) {
-        System.out.println("Wykonuje service " + originPlace + destinationPlace + outboundPartialDate + inboundPartialDate);
         return client.getSkyScannerFlightQuoteResponse(originPlace, destinationPlace, outboundPartialDate, inboundPartialDate);
     }
 }

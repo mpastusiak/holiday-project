@@ -44,6 +44,9 @@ public class TheFlight {
     @Column(name = "departureDate")
     private String departureDate;
 
+    @Column(name = "returnDate")
+    private String returnDate;
+
     @Column(name = "direct")
     private boolean direct;
 

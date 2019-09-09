@@ -17,7 +17,6 @@ public class SkyScannerFlightFacade {
 
     public SkyScannerFlightQuoteResponseDto getSkyScannerFlightResponse(String originPlace, String destinationPlace,
                                                                         String outboundPartialDate, String inboundPartialDate) {
-        System.out.println("Wykonuje facade " + originPlace + destinationPlace + outboundPartialDate + inboundPartialDate);
         SkyScannerFlightQuoteResponse response =
                 mapper.mapToSkyScannerFlightQuoteResponse(service.getSkyScannerFlightResponse(originPlace,
                         destinationPlace, outboundPartialDate, inboundPartialDate));

@@ -1,6 +1,7 @@
 package com.kodilla.holiday.service.flight;
 
 import com.kodilla.holiday.domain.flight.TheFlight;
+import com.kodilla.holiday.domain.flight.TheFlightDto;
 import com.kodilla.holiday.repository.flight.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,11 @@ public class FlightService {
     }
 
     public void deleteFlight(final Long id) { repository.deleteById(id); }
+
+    public TheFlightDto getFlightDtoById(List<TheFlightDto> flightDtoList, String id) {
+        return flightDtoList.stream()
+                .filter(f -> f.getFlightId().equals(id))
+                .findFirst()
+                .get();
+    }
 }

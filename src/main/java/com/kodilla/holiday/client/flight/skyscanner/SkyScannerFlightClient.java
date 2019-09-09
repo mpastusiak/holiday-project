@@ -33,6 +33,8 @@ public class SkyScannerFlightClient {
                 .pathSegment(inboundPartialDate)
                 .queryParam("apikey", skyScannerConfig.getSkyscannerAppKey()).build().encode().toUri();
 
+        System.out.println(url);
+
         restTemplate.setErrorHandler(new RestTemplateResponseErrorHandler());
 
         int count = 0;

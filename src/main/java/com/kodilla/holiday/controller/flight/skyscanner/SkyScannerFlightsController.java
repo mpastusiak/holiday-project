@@ -42,4 +42,6 @@ public class SkyScannerFlightsController {
                 outboundPartialDate, inboundPartialDate));
     }
 
+
+
 }

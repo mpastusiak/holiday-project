@@ -16,7 +16,6 @@ public class WeatherFacade {
     private WeatherMapper mapper;
 
     public WeatherResponseDto getWeatherResponse(String lat, String lon) {
-        System.out.println("Wykonuje facade " + lat + lon);
         WeatherResponse response =
                 mapper.mapToWeatherResponse(service.getWeatherResponse(lat, lon));
         return mapper.mapToWeatherResponseDto(response);

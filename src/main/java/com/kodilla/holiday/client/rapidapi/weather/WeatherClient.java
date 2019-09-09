@@ -37,12 +37,8 @@ public class WeatherClient {
 
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-        System.out.println(url);
-
         ResponseEntity<WeatherResponseDto> response = restTemplate.exchange(url, HttpMethod.GET, entity, WeatherResponseDto.class);
         ResponseEntity<String> response2 = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-
-        System.out.println(response2.getBody());
 
         return response.getBody();
     }

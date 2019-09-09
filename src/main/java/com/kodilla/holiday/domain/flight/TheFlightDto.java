@@ -26,6 +26,9 @@ public class TheFlightDto {
     @JsonProperty("departureDate")
     private String departureDate;
 
+    @JsonProperty("returnDate")
+    private String returnDate;
+
     @JsonProperty("direct")
     private boolean direct;
 
