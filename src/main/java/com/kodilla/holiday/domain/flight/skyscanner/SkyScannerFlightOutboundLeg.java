@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SkyScannerFlightOutboundLeg {
-    private List<SkyScannerFlightCarrierIdsList> carrierIds;
+    private List<String> carrierIds;
     private String originId;
     private String destinationId;
     private String departureDate;

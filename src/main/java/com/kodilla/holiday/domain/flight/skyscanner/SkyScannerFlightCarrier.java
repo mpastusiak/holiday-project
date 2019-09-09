@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SkyScannerFlightCarriersList {
+public class SkyScannerFlightCarrier {
     private String carrierId;
     private String name;
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SkyScannerFlightCurrenciesDto {
+public class SkyScannerFlightCurrencyDto {
     @JsonProperty("Code")
     private String code;
 

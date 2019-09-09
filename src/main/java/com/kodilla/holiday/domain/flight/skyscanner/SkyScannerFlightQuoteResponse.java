@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SkyScannerFlightQuoteResponse {
     private List<SkyScannerFlightQuotesList> quotes;
-    private List<SkyScannerFlightPlacesList> places;
-    private List<SkyScannerFlightCarriersList> carriers;
-    private List<SkyScannerFlightCurrencies> currencies;
+    private List<SkyScannerFlightPlace> places;
+    private List<SkyScannerFlightCarrier> carriers;
+    private List<SkyScannerFlightCurrency> currencies;
 }

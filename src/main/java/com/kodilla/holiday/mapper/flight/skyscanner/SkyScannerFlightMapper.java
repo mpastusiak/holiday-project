@@ -41,74 +41,63 @@ public class SkyScannerFlightMapper {
     }
 
     public SkyScannerFlightOutboundLeg mapToSkyScannerFlightOutboundLeg(final SkyScannerFlightOutboundLegDto outboundLegDto) {
-        return new SkyScannerFlightOutboundLeg(mapToSkyScannerFlightCarrierIds(outboundLegDto.getCarrierIds()), 
+        return new SkyScannerFlightOutboundLeg(outboundLegDto.getCarrierIds(),
                 outboundLegDto.getOriginId(), outboundLegDto.getDestinationId(), outboundLegDto.getDepartureDate());
     }
 
     public SkyScannerFlightOutboundLegDto mapToSkyScannerFlightOutboundLegDto(final SkyScannerFlightOutboundLeg outboundLeg) {
-        return new SkyScannerFlightOutboundLegDto(mapToSkyScannerFlightCarrierIdsDto(outboundLeg.getCarrierIds()),
+        return new SkyScannerFlightOutboundLegDto(outboundLeg.getCarrierIds(),
                 outboundLeg.getOriginId(), outboundLeg.getDestinationId(), outboundLeg.getDepartureDate());
     }
 
     public SkyScannerFlightInboundLeg mapToSkyScannerFlightInboundLeg(final SkyScannerFlightInboundLegDto inboundLegDto) {
-        return new SkyScannerFlightInboundLeg(mapToSkyScannerFlightCarrierIds(inboundLegDto.getCarrierIds()), 
+        return new SkyScannerFlightInboundLeg(inboundLegDto.getCarrierIds(),
                 inboundLegDto.getOriginId(), inboundLegDto.getDestinationId(), inboundLegDto.getDepartureDate());
     }
 
     public SkyScannerFlightInboundLegDto mapToSkyScannerFlightInboundLegDto(final SkyScannerFlightInboundLeg inboundLeg) {
-        return new SkyScannerFlightInboundLegDto(mapToSkyScannerFlightCarrierIdsDto(inboundLeg.getCarrierIds()),
+        return new SkyScannerFlightInboundLegDto(inboundLeg.getCarrierIds(),
                 inboundLeg.getOriginId(), inboundLeg.getDestinationId(), inboundLeg.getDepartureDate());
     }
 
-    public List<SkyScannerFlightCarrierIdsList> mapToSkyScannerFlightCarrierIds(final List<SkyScannerFlightCarrierIdsListDto> carrierIdsListDto) {
-        return carrierIdsListDto.stream()
-                .map(carrierId -> new SkyScannerFlightCarrierIdsList(carrierId.getCarrierId()))
-                .collect(Collectors.toList());
-    }
-
-    public List<SkyScannerFlightCarrierIdsListDto> mapToSkyScannerFlightCarrierIdsDto(final List<SkyScannerFlightCarrierIdsList> carrierIdsList) {
-        return carrierIdsList.stream()
-                .map(carrierId -> new SkyScannerFlightCarrierIdsListDto(carrierId.getCarrierId()))
-                .collect(Collectors.toList());
-    }
     
-    public List<SkyScannerFlightPlacesList> mapToSkyScannerFlightPlacesList(final List<SkyScannerFlightPlacesListDto> placesListDto) {
+    public List<SkyScannerFlightPlace> mapToSkyScannerFlightPlacesList(final List<SkyScannerFlightPlaceDto> placesListDto) {
         return placesListDto.stream()
-                .map(place -> new SkyScannerFlightPlacesList(place.getPlaceId(), place.getIatacode(), place.getName(),
+                .map(place -> new SkyScannerFlightPlace(place.getPlaceId(), place.getIatacode(), place.getName(),
                         place.getType(), place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
                 .collect(Collectors.toList());
     }
 
-    public List<SkyScannerFlightPlacesListDto> mapToSkyScannerFlightPlacesListDto(final List<SkyScannerFlightPlacesList> placesList) {
+    public List<SkyScannerFlightPlaceDto> mapToSkyScannerFlightPlacesListDto(final List<SkyScannerFlightPlace> placesList) {
         return placesList.stream()
-                .map(place -> new SkyScannerFlightPlacesListDto(place.getPlaceId(), place.getIatacode(), place.getName(),
+                .map(place -> new SkyScannerFlightPlaceDto(place.getPlaceId(), place.getIatacode(), place.getName(),
                         place.getType(), place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
                 .collect(Collectors.toList());
     }
 
-    public List<SkyScannerFlightCarriersList> mapToSkyScannerFlightCarriersList(final List<SkyScannerFlightCarriersListDto> carriersListDto) {
+    public List<SkyScannerFlightCarrier> mapToSkyScannerFlightCarriersList(final List<SkyScannerFlightCarrierDto> carriersListDto) {
         return carriersListDto.stream()
-                .map(carrier -> new SkyScannerFlightCarriersList(carrier.getCarrierId(), carrier.getName()))
+                .map(carrier -> new SkyScannerFlightCarrier(carrier.getCarrierId(), carrier.getName()))
                 .collect(Collectors.toList());
     }
 
-    public List<SkyScannerFlightCarriersListDto> mapToSkyScannerFlightCarriersListDto(final List<SkyScannerFlightCarriersList> carriersList) {
+    public List<SkyScannerFlightCarrierDto> mapToSkyScannerFlightCarriersListDto(final List<SkyScannerFlightCarrier> carriersList) {
         return carriersList.stream()
-                .map(carrier -> new SkyScannerFlightCarriersListDto(carrier.getCarrierId(), carrier.getName()))
+                .map(carrier -> new SkyScannerFlightCarrierDto(carrier.getCarrierId(), carrier.getName()))
                 .collect(Collectors.toList());
     }
 
-    public List<SkyScannerFlightCurrencies> mapToSkyScannerFlightCurrencies(final List<SkyScannerFlightCurrenciesDto> currenciesDto) {
+    public List<SkyScannerFlightCurrency> mapToSkyScannerFlightCurrencies(final List<SkyScannerFlightCurrencyDto> currenciesDto) {
         return currenciesDto.stream()
-                .map(currency -> new SkyScannerFlightCurrencies(currency.getCode(), currency.getSymbol(),
+                .map(currency -> new SkyScannerFlightCurrency(currency.getCode(), currency.getSymbol(),
                         currency.getThousandsSeparator(), currency.getDecimalSeparator(), currency.getSymbolOnLeft(),
                         currency.getSpaceBetweenAmountAndSymbol(), currency.getRoundingCoefficient(), currency.getDecimalDigits()))
                 .collect(Collectors.toList());
     }
 
-    public List<SkyScannerFlightCurrenciesDto> mapToSkyScannerFlightCurrenciesDto(final List<SkyScannerFlightCurrencies> currencies) {
+    public List<SkyScannerFlightCurrencyDto> mapToSkyScannerFlightCurrenciesDto(final List<SkyScannerFlightCurrency> currencies) {
         return currencies.stream()
-                .map(currency -> new SkyScannerFlightCurrenciesDto(currency.getCode(), currency.getSymbol(),
+                .map(currency -> new SkyScannerFlightCurrencyDto(currency.getCode(), currency.getSymbol(),
                         currency.getThousandsSeparator(), currency.getDecimalSeparator(), currency.getSymbolOnLeft(),
                         currency.getSpaceBetweenAmountAndSymbol(), currency.getRoundingCoefficient(), currency.getDecimalDigits()))
                 .collect(Collectors.toList());

@@ -17,11 +17,11 @@ public class SkyScannerFlightQuoteResponseDto {
     private List<SkyScannerFlightQuotesListDto> quotes;
 
     @JsonProperty("Places")
-    private List<SkyScannerFlightPlacesListDto> places;
+    private List<SkyScannerFlightPlaceDto> places;
 
     @JsonProperty("Carriers")
-    private List<SkyScannerFlightCarriersListDto> carriers;
+    private List<SkyScannerFlightCarrierDto> carriers;
 
     @JsonProperty("Currencies")
-    private List<SkyScannerFlightCurrenciesDto> currencies;
+    private List<SkyScannerFlightCurrencyDto> currencies;
 }

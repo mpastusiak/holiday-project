@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SkyScannerFlightCurrencies {
+public class SkyScannerFlightCurrency {
     private String code;
     private String symbol;
     private String thousandsSeparator;

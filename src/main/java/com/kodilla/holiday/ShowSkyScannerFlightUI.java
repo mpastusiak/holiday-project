@@ -4,8 +4,7 @@ import com.kodilla.holiday.controller.flight.skyscanner.SkyScannerFlightsControl
 import com.kodilla.holiday.domain.flight.skyscanner.SkyScannerFlightQuotesListDto;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -18,45 +17,54 @@ public class ShowSkyScannerFlightUI extends VerticalLayout {
     @Autowired
     private SkyScannerFlightsController flightController;
 
-    private TextField a;
-    private TextField b;
-    private TextField c;
-    private TextField d;
-    private Button testShowFlights;
+    private HorizontalLayout form = new HorizontalLayout();
+    private TextField originTextField;
+    private TextField destinationTextField;
+    private TextField dateFromTextField;
+    private TextField dateToTextField;
+    private Button showFlightsButton;
     private Grid<SkyScannerFlightQuotesListDto> grid = new Grid<>(SkyScannerFlightQuotesListDto.class);
 
     @Autowired
     public ShowSkyScannerFlightUI(SkyScannerFlightsController flightController) {
         this.flightController = flightController;
-        grid.addComponentColumn(this :: buildDeleteButton);
-        a = new TextField("A:");
-        b = new TextField("B:");
-        c = new TextField("C:");
-        d = new TextField("D:");
-        testShowFlights = new Button("Show flights!");
-        testShowFlights.addClickListener(e -> showFlights());
+        //grid.addComponentColumn(this :: showDetailsButton);
+        originTextField = new TextField("Origin place:");
+        destinationTextField = new TextField("Destination place:");
+        dateFromTextField = new TextField("Date from:");
+        dateToTextField = new TextField("Date to:");
+        showFlightsButton = new Button("Show flights");
+        showFlightsButton.addClickListener(e -> showFlights());
 
-        add(a);
-        add(b);
-        add(c);
-        add(d);
-        add(testShowFlights);
-        add(grid);
-
+        form.add(originTextField);
+        form.add(destinationTextField);
+        form.add(dateFromTextField);
+        form.add(dateToTextField);
+        form.add(showFlightsButton);
+        add(form, grid);
     }
 
     public void showFlights() {
-        grid.setItems(flightController.getResponse(a.getValue(), b.getValue(), c.getValue(), d.getValue()).getQuotes());
+        grid.setItems(flightController.getResponse(originTextField.getValue(), destinationTextField.getValue(),
+                dateFromTextField.getValue(), dateToTextField.getValue()).getQuotes());
     }
 
-    private Button buildDeleteButton(SkyScannerFlightQuotesListDto f) {
-        Button button = new Button("TEST");
-        button.setIcon(new Icon(VaadinIcon.CLOSE));
-        button.addClickListener(e -> deleteFlight(f));
+    /*
+    public Button showDetailsButton(SkyScannerFlightQuotesListDto quotesListDto) {
+        Button button = new Button("Details");
+        button.setIcon(new Icon(VaadinIcon.ARROW_RIGHT));
+        button.addClickListener(e -> showQuote(quotesListDto));
         return button;
     }
 
-    private void deleteFlight(SkyScannerFlightQuotesListDto f) {
-
+    public void showFligt(SkyScannerFlightQuotesListDto quotesListDto) {
+        showPlace(flightDto);
+        showCarrier(flightDto);
+        if(accordion.isVisible()) {
+            accordion.setVisible(false);
+        } else {
+            accordion.setVisible(true);
+        }
     }
+     */
 }

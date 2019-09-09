@@ -14,7 +14,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SkyScannerFlightOutboundLegDto {
     @JsonProperty("CarrierIds")
-    private List<SkyScannerFlightCarrierIdsListDto> carrierIds;
+    private List<String> carrierIds;
 
     @JsonProperty("OriginId")
     private String originId;

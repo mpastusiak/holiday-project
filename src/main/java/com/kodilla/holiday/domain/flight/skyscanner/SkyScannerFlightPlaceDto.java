@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SkyScannerFlightPlacesListDto {
+public class SkyScannerFlightPlaceDto {
     @JsonProperty("PlaceId")
     private String placeId;
 

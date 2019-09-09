@@ -1,15 +1,19 @@
 package com.kodilla.holiday;
 
+import com.kodilla.holiday.controller.flight.CarrierController;
 import com.kodilla.holiday.controller.flight.FlightController;
+import com.kodilla.holiday.controller.flight.PlaceController;
 import com.kodilla.holiday.domain.flight.CarrierDto;
 import com.kodilla.holiday.domain.flight.PlaceDto;
 import com.kodilla.holiday.domain.flight.TheFlightDto;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,15 +24,26 @@ public class ShowFlightsUI extends HorizontalLayout {
     @Autowired
     private FlightController flightController;
 
+    @Autowired
+            private PlaceController placeController;
+
+    @Autowired
+            private CarrierController carrierController;
+
     Accordion accordion = new Accordion();
     private Grid<TheFlightDto> gridFlights = new Grid<>(TheFlightDto.class);
     private Grid<PlaceDto> gridOrigin = new Grid<>(PlaceDto.class);
     private Grid<PlaceDto> gridDestination = new Grid<>(PlaceDto.class);
     private Grid<CarrierDto> gridCarrier = new Grid<>(CarrierDto.class);
+    private VerticalLayout addForm = new VerticalLayout();
+    private ComboBox<String> originPlaceSelect = new ComboBox<>("Origin place:");
+    private ComboBox<String> destinationPlaceSelect = new ComboBox<>("Destination place:");
+    private ComboBox<String> carrierSelect = new ComboBox<>("Carrier:");
 
     @Autowired
     public ShowFlightsUI(FlightController flightController) {
         this.flightController = flightController;
+        gridFlights.setColumns("departureDate", "direct", "originsList", "destinationsList", "minPrice");
         gridFlights.addComponentColumn(this :: showDetailsButton);
         gridFlights.addItemClickListener(e -> showFligt(e.getItem()));
         gridFlights.setSizeFull();
@@ -39,8 +54,14 @@ public class ShowFlightsUI extends HorizontalLayout {
         accordion.setSizeFull();
         accordion.setVisible(false);
 
+        getAllDataToSelects();
+        addForm.add(originPlaceSelect);
+        addForm.add(destinationPlaceSelect);
+        addForm.add(carrierSelect);
+
         add(gridFlights);
         add(accordion);
+        add(addForm);
         setSizeFull();
         showFlights();
     }
@@ -73,5 +94,11 @@ public class ShowFlightsUI extends HorizontalLayout {
         } else {
             accordion.setVisible(true);
         }
+    }
+
+    public void getAllDataToSelects() {
+        //originPlaceSelect.setItems(placeController.getPlaces().toString());
+        //destinationPlaceSelect.setItems(placeController.getPlaces().toString());
+        //carrierSelect.setItems(carrierController.getCarriers().toString());
     }
 }
