@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Route
 @Transactional
-public class ShowSkyScannerFlightsUI extends VerticalLayout {
+public class FindFlightBySkyScanner extends VerticalLayout {
     @Autowired
     private FlightController flightController;
 
@@ -61,7 +61,7 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
     private TextField priceTextField = new TextField("Your price:");
 
     @Autowired
-    public ShowSkyScannerFlightsUI(FlightController flightController) {
+    public FindFlightBySkyScanner(FlightController flightController) {
         this.flightController = flightController;
         showFlightsButton.addClickListener(e -> showFlights());
 

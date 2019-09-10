@@ -20,9 +20,6 @@ public class SkyScannerFlightPlaceDto {
     @JsonProperty("Name")
     private String name;
 
-    @JsonProperty("Type")
-    private String type;
-
     @JsonProperty("SkyscannerCode")
     private String skyscannerCode;
 

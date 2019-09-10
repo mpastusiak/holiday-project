@@ -8,12 +8,10 @@ import com.kodilla.holiday.domain.flight.PlaceDto;
 import com.kodilla.holiday.domain.flight.TheFlightDto;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +33,6 @@ public class ShowFlightsUI extends HorizontalLayout {
     private Grid<PlaceDto> gridOrigin = new Grid<>(PlaceDto.class);
     private Grid<PlaceDto> gridDestination = new Grid<>(PlaceDto.class);
     private Grid<CarrierDto> gridCarrier = new Grid<>(CarrierDto.class);
-    private VerticalLayout addForm = new VerticalLayout();
-    private ComboBox<String> originPlaceSelect = new ComboBox<>("Origin place:");
-    private ComboBox<String> destinationPlaceSelect = new ComboBox<>("Destination place:");
-    private ComboBox<String> carrierSelect = new ComboBox<>("Carrier:");
 
     @Autowired
     public ShowFlightsUI(FlightController flightController) {
@@ -54,14 +48,8 @@ public class ShowFlightsUI extends HorizontalLayout {
         accordion.setSizeFull();
         accordion.setVisible(false);
 
-        getAllDataToSelects();
-        addForm.add(originPlaceSelect);
-        addForm.add(destinationPlaceSelect);
-        addForm.add(carrierSelect);
-
         add(gridFlights);
         add(accordion);
-        add(addForm);
         setSizeFull();
         showFlights();
     }
@@ -96,9 +84,4 @@ public class ShowFlightsUI extends HorizontalLayout {
         }
     }
 
-    public void getAllDataToSelects() {
-        //originPlaceSelect.setItems(placeController.getPlaces().toString());
-        //destinationPlaceSelect.setItems(placeController.getPlaces().toString());
-        //carrierSelect.setItems(carrierController.getCarriers().toString());
-    }
 }

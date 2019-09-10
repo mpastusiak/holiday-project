@@ -11,7 +11,6 @@ public class SkyScannerFlightPlace {
     private String placeId;
     private String iatacode;
     private String name;
-    private String type;
     private String skyscannerCode;
     private String cityName;
     private String cityId;

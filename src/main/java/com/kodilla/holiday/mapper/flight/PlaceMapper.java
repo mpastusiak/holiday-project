@@ -14,13 +14,14 @@ public class PlaceMapper {
     public Destination mapToDestination(PlaceDto placeDto) {
         Destination destination = new Destination();
         destination.setPlaceId(placeDto.getPlaceId());
-        destination.setPlacePartnerId(destination.getPlacePartnerId());
+        destination.setPlacePartnerId(placeDto.getPlacePartnerId());
         destination.setIataCode(placeDto.getIataCode());
         destination.setPlaceName(placeDto.getPlaceName());
         destination.setCityName(placeDto.getCityName());
         destination.setCountryName(placeDto.getCountryName());
         destination.getFlightsList();
-        return destination;
+        System.out.println(destination + "????");
+        return (Destination) destination;
     }
 
     public Origin mapToOrigin(PlaceDto placeDto) {
@@ -32,7 +33,8 @@ public class PlaceMapper {
         origin.setCityName(placeDto.getCityName());
         origin.setCountryName(placeDto.getCountryName());
         origin.getFlightsList();
-        return origin;
+        System.out.println(origin + " OOO???");
+        return (Origin) origin;
     }
 
     public Place mapToPlace(PlaceDto placeDto) {
@@ -47,13 +49,14 @@ public class PlaceMapper {
     }
 
     public PlaceDto mapToPlaceDto(Destination destination) {
-        return new PlaceDto(destination.getPlaceId(), destination.getPlacePartnerId(), destination.getIataCode(),
-                destination.getPlaceName(), destination.getCityName(), destination.getCountryName());
+        return new PlaceDto(destination.getPlaceId(), destination.getPlacePartnerId(),
+                destination.getIataCode(), destination.getPlaceName(), destination.getCityName(),
+                destination.getCountryName());
     }
 
     public PlaceDto mapToPlaceDto(Origin origin) {
-        return new PlaceDto(origin.getPlaceId(), origin.getPlacePartnerId(), origin.getIataCode(), origin.getPlaceName(),
-                origin.getCityName(), origin.getCountryName());
+        return new PlaceDto(origin.getPlaceId(), origin.getPlacePartnerId(), origin.getIataCode(),
+                origin.getPlaceName(), origin.getCityName(), origin.getCountryName());
     }
 
     public PlaceDto mapToPlaceDto(Place place) {

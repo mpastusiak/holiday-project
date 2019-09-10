@@ -11,9 +11,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "place")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="placeType",
-        discriminatorType = DiscriminatorType.STRING)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorOptions(force=true)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Place {
     @Id
     @Column(name = "placeId")

@@ -23,7 +23,7 @@ public class FlightService {
     }
 
     public TheFlight saveFlight(final TheFlight flight) {
-        System.out.println("ZAPIS"); return repository.save(flight);
+        return repository.save(flight);
     }
 
     public void deleteFlight(final Long id) { repository.deleteById(id); }

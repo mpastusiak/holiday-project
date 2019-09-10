@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,6 +50,8 @@ public class FlightFacade {
         List<CarrierDto> carriers = theFlightDto.getCarriersList();
         theFlightDto.setCarriersList(validateCarrierDtoList(carriers));
 
+        System.out.println(destinations + " | " + origins);
+
         flightService.saveFlight(flightMapper.mapToTheFlight(theFlightDto));
     }
 
@@ -70,6 +71,7 @@ public class FlightFacade {
             placeDto = placeMapper.mapToPlaceDto(place);
             newPlacesDto.add(placeDto);
         }
+        System.out.println(newPlacesDto + "!!!!");
         return newPlacesDto;
     }
 

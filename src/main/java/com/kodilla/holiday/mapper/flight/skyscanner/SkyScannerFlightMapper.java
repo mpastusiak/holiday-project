@@ -64,14 +64,14 @@ public class SkyScannerFlightMapper {
     public List<SkyScannerFlightPlace> mapToSkyScannerFlightPlacesList(final List<SkyScannerFlightPlaceDto> placesListDto) {
         return placesListDto.stream()
                 .map(place -> new SkyScannerFlightPlace(place.getPlaceId(), place.getIatacode(), place.getName(),
-                        place.getType(), place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
+                        place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
                 .collect(Collectors.toList());
     }
 
     public List<SkyScannerFlightPlaceDto> mapToSkyScannerFlightPlacesListDto(final List<SkyScannerFlightPlace> placesList) {
         return placesList.stream()
                 .map(place -> new SkyScannerFlightPlaceDto(place.getPlaceId(), place.getIatacode(), place.getName(),
-                        place.getType(), place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
+                        place.getSkyscannerCode(), place.getCityName(), place.getCityId(), place.getCountryName()))
                 .collect(Collectors.toList());
     }
 

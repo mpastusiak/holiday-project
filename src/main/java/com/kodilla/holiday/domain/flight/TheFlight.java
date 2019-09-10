@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -25,19 +27,21 @@ public class TheFlight {
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinTable(
             name = "join_flight_origin",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "place_id")
+            joinColumns = @JoinColumn(name = "flightId"),
+            inverseJoinColumns = @JoinColumn(name = "placeId")
     )
     private List<Origin> originsList;
 
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinTable(
             name = "join_flight_destination",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "place_id")
+            joinColumns = @JoinColumn(name = "flightId"),
+            inverseJoinColumns = @JoinColumn(name = "placeId")
     )
     private List<Destination> destinationsList;
 

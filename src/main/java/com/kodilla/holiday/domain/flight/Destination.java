@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,9 +19,10 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("destination")
+@Table(name="destination")
+@PrimaryKeyJoinColumn(name="placeId")
 public class Destination extends Place {
-    @OneToMany(mappedBy = "destinationsList")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<TheFlight> flightsList;
+    @OneToMany(mappedBy = "destinationsList")
+    private List<TheFlight> flightsList = new ArrayList<>();
 }
