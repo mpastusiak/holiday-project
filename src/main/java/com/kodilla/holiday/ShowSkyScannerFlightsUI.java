@@ -45,6 +45,9 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
     private TextField dateToTextField = new TextField("Date to:");
     private Button showFlightsButton = new Button("Search flights on partners services");
 
+    private String originIataCode;
+    private String destinationIataCode;
+
     private HorizontalLayout dataLayout = new HorizontalLayout();
     Accordion accordion = new Accordion();
     private Grid<TheFlightDto> gridFlights = new Grid<>(TheFlightDto.class);
@@ -64,6 +67,7 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
 
         gridFlights.setColumns("departureDate", "returnDate", "direct", "originsList", "destinationsList", "minPrice");
         gridFlights.addComponentColumn(this :: showDetailsButton);
+        gridFlights.addComponentColumn(this :: showBookingButton);
         gridFlights.addItemClickListener(e -> showFligt(e.getItem()));
         gridFlights.setSizeFull();
 
@@ -74,6 +78,9 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
         returnDateLabelTextField.setReadOnly(true);
         priceTextField.setReadOnly(true);
 
+        gridOrigin.setColumns("placeName", "cityName", "countryName", "iataCode");
+        gridDestination.setColumns("placeName", "cityName", "countryName", "iataCode");
+        gridCarrier.setColumns("carrierName");
         accordion.add("ORIGINS", gridOrigin);
         accordion.add("DESTINATIONS", gridDestination);
         accordion.add("CARRIERS", gridCarrier);
@@ -92,7 +99,11 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
     }
 
     public void showFlights() {
-        gridFlights.setItems(ssFlightsController.getResponseByFlight(originTextField.getValue(), destinationTextField.getValue(),
+        originTextField.setValue(geoCatalogService.findPlaceName(originTextField.getValue()));
+        originIataCode = geoCatalogService.findPlaceIata(originTextField.getValue());
+        destinationTextField.setValue(geoCatalogService.findPlaceName(destinationTextField.getValue()));
+        destinationIataCode = geoCatalogService.findPlaceIata(destinationTextField.getValue());
+        gridFlights.setItems(ssFlightsController.getResponseByFlight(originIataCode, destinationIataCode,
                 dateFromTextField.getValue(), dateToTextField.getValue()));
     }
 
@@ -123,7 +134,17 @@ public class ShowSkyScannerFlightsUI extends VerticalLayout {
         showPlace(flightDto);
         showCarrier(flightDto);
         detailsLayout.setVisible(true);
-        geoCatalogService.getCities(geoCatalogService.getContents(geoCatalogService.getCountries("a")));
+    }
+
+    public Button showBookingButton(TheFlightDto flightDto) {
+        Button button = new Button("Book flight!");
+        button.setIcon(new Icon(VaadinIcon.CHECK));
+        button.addClickListener(e -> bookFlight(flightDto));
+        return button;
+    }
+
+    public void bookFlight(TheFlightDto flightDto) {
+        flightController.createFlight(flightDto);
     }
 
 }
