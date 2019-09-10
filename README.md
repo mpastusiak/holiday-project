@@ -1,8 +1,11 @@
 WERSJA mocno nieskończona!
+Aktualnie Commit "DEADLINE"
+
 Uruchomienie:
 - wystarczy uruchomić Holiday Application
 - wersja graficzna z dostępnymi wersjami na localhost:8080
 - endpointy na localhost:8080/v1
+- obsługiwany format daty "RRRR-MM" lub "RRRR-MM-DD"
 
 Co miał robić projekt:
 - wyszukiwać loty u partnera wg miejsca odlotu, przylotu, daty odlotu i powrotnej;
