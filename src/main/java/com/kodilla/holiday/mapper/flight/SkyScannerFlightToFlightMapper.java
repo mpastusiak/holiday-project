@@ -120,14 +120,12 @@ public class SkyScannerFlightToFlightMapper {
     public List<List<String>> ssFlightTossDirectCarriersId(SkyScannerFlightQuoteResponseDto ssFlight) {
         return ssFlight.getQuotes().stream()
                 .map(f -> f.getOutboundLeg().getCarrierIds())
-                .peek(k -> System.out.println(k))
                 .collect(Collectors.toList());
     }
 
     public List<List<String>> ssFlightTossReturnCarriersId(SkyScannerFlightQuoteResponseDto ssFlight) {
         return ssFlight.getQuotes().stream()
                 .map(f -> f.getInboundLeg().getCarrierIds())
-                .peek(k -> System.out.println(k))
                 .collect(Collectors.toList());
     }
 

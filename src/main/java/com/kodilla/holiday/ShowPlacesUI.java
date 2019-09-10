@@ -20,7 +20,7 @@ public class ShowPlacesUI extends VerticalLayout {
     @Autowired
     public ShowPlacesUI(PlaceController placeController) {
         this.placeController = placeController;
-        testShowPlaces = new Button("Show places!");
+        testShowPlaces = new Button("Show com.kodilla.holiday.domain.flight.skyscanner.places.places!");
         testShowPlaces.addClickListener(e -> showPlaces());
 
         add(grid);

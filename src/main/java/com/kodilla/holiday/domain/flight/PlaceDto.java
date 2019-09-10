@@ -28,8 +28,6 @@ public class PlaceDto {
 
     @Override
     public String toString() {
-        return placeName + "|" +
-                cityName + "|" +
-                countryName;
+        return placeName;
     }
 }

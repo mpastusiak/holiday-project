@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GeoCatalog" type="GeoCatalogType"/>
+  <xs:complexType name="AirportType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="Id" use="optional"/>
+        <xs:attribute type="xs:string" name="Name" use="optional"/>
+        <xs:attribute type="xs:string" name="CountryId" use="optional"/>
+        <xs:attribute type="xs:string" name="Location" use="optional"/>
+        <xs:attribute type="xs:string" name="CityId" use="optional"/>
+        <xs:attribute type="xs:string" name="RegionId" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AirportsType">
+    <xs:sequence>
+      <xs:element type="AirportType" name="Airport" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CityType">
+    <xs:sequence>
+      <xs:element type="AirportsType" name="Airports"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Id" use="optional"/>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+    <xs:attribute type="xs:string" name="CountryId" use="optional"/>
+    <xs:attribute type="xs:string" name="Location" use="optional"/>
+    <xs:attribute type="xs:string" name="IataCode" use="optional"/>
+    <xs:attribute type="xs:string" name="SingleAirportCity" use="optional"/>
+    <xs:attribute type="xs:string" name="RegionId" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="CitiesType" mixed="true">
+    <xs:sequence>
+      <xs:element type="CityType" name="City" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CountryType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="CurrencyId"/>
+      <xs:element type="xs:string" name="LanguageId" minOccurs="0"/>
+      <xs:element name="Regions">
+        <xs:complexType mixed="true">
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element type="RegionType" name="Region"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element type="CitiesType" name="Cities"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Id" use="optional"/>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="RegionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="Id" use="optional"/>
+        <xs:attribute type="xs:string" name="Name" use="optional"/>
+        <xs:attribute type="xs:string" name="CountryId" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="RegionsType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="RegionType" name="Region"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CountriesType">
+    <xs:sequence>
+      <xs:element type="CountryType" name="Country" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContinentType">
+    <xs:sequence>
+      <xs:element type="CountriesType" name="Countries"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Id" use="optional"/>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="ContinentsType">
+    <xs:sequence>
+      <xs:element type="ContinentType" name="Continent" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GeoCatalogType">
+    <xs:sequence>
+      <xs:element type="ContinentsType" name="Continents"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
